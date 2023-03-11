@@ -43,9 +43,11 @@ export class App extends Component {
   };
 
   componentDidMount() {
-    this.setState({
-      contacts: JSON.parse(localStorage.contacts)
-    })
+    if(localStorage.contacts) {
+      this.setState({
+        contacts: JSON.parse(localStorage.contacts)
+      })
+    };
   };
 
   render() {
