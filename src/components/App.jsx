@@ -42,10 +42,10 @@ export class App extends Component {
     Notify.failure(`${name} is deleted from your contact list`);
   };
 
-  componentDidUpdate(prevProps, prevState) {
-    if(this.state.contacts !== prevState.contacts) {
-      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-    }
+  componentDidMount() {
+    this.setState({
+      contacts: JSON.parse(localStorage.contacts)
+    })
   };
 
   render() {
@@ -68,4 +68,11 @@ export class App extends Component {
       </>
     );
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    if(this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  };
+
 };
