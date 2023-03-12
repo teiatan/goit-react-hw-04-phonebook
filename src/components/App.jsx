@@ -48,11 +48,11 @@ export class App extends Component {
         contacts: JSON.parse(localStorage.contacts)
       })
     };
-    if(localStorage.filter) {
+    /* if(localStorage.filter) {
       this.setState({
         filter: localStorage.filter
       })
-    };
+    }; */
   };
 
   render() {
@@ -81,9 +81,9 @@ export class App extends Component {
       localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
     };
 
-    if(this.state.filter !== prevState.filter) {
+    /* if(this.state.filter !== prevState.filter) {
       localStorage.setItem('filter', this.state.filter);
-    };
+    }; */
   };
 
 };
