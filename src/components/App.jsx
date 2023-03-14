@@ -14,7 +14,21 @@ export class App extends Component {
       {name: 'Eden Clements', number: '645-17-79'},
       {name: 'Annie Copeland', number: '227-91-26'},
     ],
-    filter: "",
+  };
+
+  componentDidMount() {
+    const savedStorage = localStorage.getItem('contacts');
+    if(savedStorage) {
+      this.setState({
+        contacts: JSON.parse(savedStorage)
+      })
+    };
+  };
+
+  componentDidUpdate(prevProps, prevState) {
+    if(this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    };
   };
 
   takeDataFromSubmitForm = data => {
@@ -42,19 +56,6 @@ export class App extends Component {
     Notify.failure(`${name} is deleted from your contact list`);
   };
 
-  componentDidMount() {
-    if(localStorage.contacts) {
-      this.setState({
-        contacts: JSON.parse(localStorage.contacts)
-      })
-    };
-    /* if(localStorage.filter) {
-      this.setState({
-        filter: localStorage.filter
-      })
-    }; */
-  };
-
   render() {
     const visibleContacts = this.getFilteredContacts();
     return (
@@ -74,16 +75,6 @@ export class App extends Component {
         </Section>
       </>
     );
-  };
-
-  componentDidUpdate(prevProps, prevState) {
-    if(this.state.contacts !== prevState.contacts) {
-      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-    };
-
-    /* if(this.state.filter !== prevState.filter) {
-      localStorage.setItem('filter', this.state.filter);
-    }; */
   };
 
 };
