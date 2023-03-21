@@ -7,7 +7,7 @@ import { ContactList } from "./ContactList/ContactList";
 import { Container } from "./App.styled";
 
 export function App() {
-  const [contacts, setContacts] = useState([
+  const [contacts, setContacts] = useState(JSON.parse(window.localStorage.getItem('contacts')) ?? [
     {name: 'Rosie Simpson', number: '459-12-56'},
     {name: 'Hermione Kline', number: '443-89-12'},
     {name: 'Eden Clements', number: '645-17-79'},
@@ -15,20 +15,12 @@ export function App() {
   ]);
 
   const [filter, setFilter] = useState("");
-  const [firstLoading, setFirstLoading] = useState(false);
-  useEffect(()=>{
-    const savedStorage = localStorage.getItem('contacts');
-    if(savedStorage) {
-      setContacts(JSON.parse(savedStorage));
-    };
-    setFirstLoading(true);
-  }, []);
 
   useEffect(()=>{
-    if(firstLoading) {
-      localStorage.setItem('contacts', JSON.stringify(contacts));
-    };
-  }, [contacts, firstLoading]);
+    
+      window.localStorage.setItem('contacts', JSON.stringify(contacts));
+    
+  }, [contacts]);
 
   const takeDataFromSubmitForm = (name, number) => {
     const existingContact = contacts.find((element) =>
