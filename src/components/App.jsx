@@ -7,7 +7,7 @@ import { ContactList } from "./ContactList/ContactList";
 import { Container } from "./App.styled";
 
 export function App() {
-  const [contacts, setContacts] = useState(JSON.parse(window.localStorage.getItem('contacts')) ?? [
+  const [contacts, setContacts] = useState(() => JSON.parse(window.localStorage.getItem('contacts')) ?? [
     {name: 'Rosie Simpson', number: '459-12-56'},
     {name: 'Hermione Kline', number: '443-89-12'},
     {name: 'Eden Clements', number: '645-17-79'},
