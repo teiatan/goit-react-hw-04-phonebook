@@ -14,6 +14,7 @@ export class App extends Component {
       {name: 'Eden Clements', number: '645-17-79'},
       {name: 'Annie Copeland', number: '227-91-26'},
     ],
+    filter: ""
   };
 
   componentDidMount() {
@@ -26,7 +27,7 @@ export class App extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    if(this.state.contacts !== prevState.contacts) {
+    if(this.state.contacts.length !== prevState.contacts.length) {
       localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
     };
   };
