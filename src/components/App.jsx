@@ -32,16 +32,16 @@ export class App extends Component {
     };
   };
 
-  takeDataFromSubmitForm = data => {
+  takeDataFromSubmitForm = (name, number) => {
     const existingContact = this.state.contacts.find((element) =>
-      element.name === data.name
+      element.name === name
     );
     if(existingContact) {
-      window.alert(`${data.name} is already in contacts`);
+      window.alert(`${name} is already in contacts`);
       return;
     }; 
-    this.setState(prevState => ({contacts: [...prevState.contacts, data]}));
-    Notify.success(`${data.name} is successfully added to your contact list`);
+    this.setState(prevState => ({contacts: [...prevState.contacts, {name: name, number: number}]}));
+    Notify.success(`${name} is successfully added to your contact list`);
   };
 
   handleFilterInputChange = e => {
@@ -62,7 +62,7 @@ export class App extends Component {
     return (
       <>
         <Section title="Phonebook">
-          <ContactForm handleSubmit={this.takeDataFromSubmitForm}/>
+          <ContactForm takeDataFromSubmitForm={this.takeDataFromSubmitForm}/>
         </Section>
   
         <Section title="Contacts">
