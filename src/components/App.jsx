@@ -17,9 +17,7 @@ export function App() {
   const [filter, setFilter] = useState("");
 
   useEffect(()=>{
-    
       window.localStorage.setItem('contacts', JSON.stringify(contacts));
-    
   }, [contacts]);
 
   const takeDataFromSubmitForm = (name, number) => {
