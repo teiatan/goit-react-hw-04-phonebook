@@ -36,16 +36,12 @@ export function App() {
     setFilter(inputValue);
   };
 
-  const getFilteredContacts = () => {
-    return contacts.filter(element => element.name.toLowerCase().includes(filter));
-  };
-
   const deleteContact = (name) => {
     setContacts(prevState => prevState.filter(contact => contact.name !== name));
     Notify.failure(`${name} is deleted from your contact list`);
   };
 
-  const visibleContacts = getFilteredContacts();
+  const visibleContacts =  contacts.filter(element => element.name.toLowerCase().includes(filter));
 
   return (
     <>
@@ -58,7 +54,7 @@ export function App() {
           <Filter getFilterRequest={getFilterRequest}/>
           <ContactList
             contacts={visibleContacts} 
-            onDeleteContact={deleteContact}>
+            deleteContact={deleteContact}>
           </ContactList>
         </Container>
       </Section>

@@ -33,7 +33,6 @@ export function ContactForm({takeDataFromSubmitForm}) {
         setNumber("");
     };
 
-    
     return (
         <Form onSubmit={handleSubmit}>
             <Label>
@@ -64,8 +63,7 @@ export function ContactForm({takeDataFromSubmitForm}) {
 
             <Button type="submit">Add contact</Button>
         </Form>
-    );
-    
+    );  
 };
 
 ContactForm.propTypes = {

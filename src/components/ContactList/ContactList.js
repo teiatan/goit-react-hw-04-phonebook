@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { ContactItem } from 'components/ContactItem/ContactItem';
 import { ContactListEl } from './ContactList.styled';
 
-export function ContactList({contacts, onDeleteContact}) {
+export function ContactList({contacts, deleteContact}) {
     return (
         <ContactListEl>
             {contacts.map((contact) => {
@@ -11,7 +11,7 @@ export function ContactList({contacts, onDeleteContact}) {
                             key={contact.name}
                             name={contact.name}
                             number={contact.number}
-                            onDeleteContact={onDeleteContact}
+                            deleteContact={deleteContact}
                         />
                     );
                 })}                
@@ -24,5 +24,5 @@ ContactList.propTypes = {
         name: PropTypes.string,
         number: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     })),
-    onDeleteContact: PropTypes.func,
+    deleteContact: PropTypes.func,
 };
