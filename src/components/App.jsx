@@ -32,8 +32,8 @@ export function App() {
     Notify.success(`${name} is successfully added to your contact list`);
   };
 
-  const handleFilterInputChange = e => {
-    setFilter(e.currentTarget.value);
+  const getFilterRequest = (inputValue) => {
+    setFilter(inputValue);
   };
 
   const getFilteredContacts = () => {
@@ -44,7 +44,9 @@ export function App() {
     setContacts(prevState => prevState.filter(contact => contact.name !== name));
     Notify.failure(`${name} is deleted from your contact list`);
   };
+
   const visibleContacts = getFilteredContacts();
+
   return (
     <>
       <Section title="Phonebook">
@@ -53,7 +55,7 @@ export function App() {
 
       <Section title="Contacts">
         <Container>
-          <Filter value={filter} onChange={handleFilterInputChange}/>
+          <Filter getFilterRequest={getFilterRequest}/>
           <ContactList
             contacts={visibleContacts} 
             onDeleteContact={deleteContact}>
